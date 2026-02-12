@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Career Compass - Navigate your future with data-driven career guidance for students">
+    <title>Career Compass - Data-Driven Career Guidance</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Header & Navigation (Hidden until authenticated) -->
+    <header class="header" id="header" style="display: none;">
+        <nav class="nav container">
+            <div class="nav__logo">
+                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+                <span>Career Compass</span>
+            </div>
+
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li class="nav__item">
+                        <a href="#home" class="nav__link active" data-section="home">Home</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#assessments" class="nav__link" data-section="assessments">Assessments</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#explorer" class="nav__link" data-section="explorer">Career Explorer</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#chat" class="nav__link" data-section="chat">Counselor Chat</a>
+                    </li>
+                    <li class="nav__item">
+                        <button class="nav__link nav__link--cta" id="logout-btn">Logout</button>
+                    </li>
+                </ul>
+            </div>
+
+            <button class="nav__toggle" id="nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Authentication Section (Landing Page) -->
+    <section class="section auth-section active" id="auth">
+        <div class="auth-container">
+            <div class="auth-brand">
+                <svg class="auth-logo" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+                <h1 class="auth-title">Career Compass</h1>
+                <p class="auth-tagline">Navigate Your Future with Data, Not Guesswork</p>
+            </div>
+
+            <div class="auth-forms">
+                <!-- Login Form -->
+                <div class="auth-form-container active" id="login-container">
+                    <h2 class="form-title">Welcome Back</h2>
+                    <p class="form-subtitle">Sign in to continue your career journey</p>
+
+                    <form class="auth-form" id="login-form-main">
+                        <div class="form-group">
+                            <label for="login-role">Login As</label>
+                            <select id="login-role" name="role" required class="role-select">
+                                <option value="">Select your role</option>
+                                <option value="student">Student / User</option>
+                                <option value="counselor">Counselor</option>
+                                <option value="admin">Admin</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="login-email">Email Address</label>
+                            <input type="email" id="login-email" name="email" placeholder="you@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="login-password">Password</label>
+                            <input type="password" id="login-password" name="password" placeholder="Enter your password"
+                                required>
+                        </div>
+                        <div class="form-options">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="remember">
+                                <span>Remember me</span>
+                            </label>
+                            <a href="#" class="link-small">Forgot password?</a>
+                        </div>
+                        <button type="submit" class="btn btn--primary btn--full">Sign In</button>
+                    </form>
+
+                    <p class="form-footer">
+                        Don't have an account? <a href="#" class="link" id="show-register">Create one now</a>
+                    </p>
+                </div>
+
+                <!-- Register Form -->
+                <div class="auth-form-container" id="register-container">
+                    <h2 class="form-title">Create Account</h2>
+                    <p class="form-subtitle">Start your personalized career journey today</p>
+
+                    <form class="auth-form" id="register-form-main">
+                        <div class="form-group">
+                            <label for="register-role">Register As</label>
+                            <select id="register-role" name="role" required class="role-select">
+                                <option value="">Select your role</option>
+                                <option value="student">Student / User</option>
+                                <option value="counselor">Counselor</option>
+                                <option value="admin">Admin</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="register-name">Full Name</label>
+                            <input type="text" id="register-name" name="name" placeholder="John Doe" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="register-email">Email Address</label>
+                            <input type="email" id="register-email" name="email" placeholder="you@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="register-password">Password</label>
+                            <input type="password" id="register-password" name="password"
+                                placeholder="At least 8 characters" required minlength="8">
+                        </div>
+                        <div class="form-group">
+                            <label for="register-confirm">Confirm Password</label>
+                            <input type="password" id="register-confirm" name="confirm" placeholder="Re-enter password"
+                                required>
+                        </div>
+                        <div class="form-options">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="terms" required>
+                                <span>I agree to the <a href="#" class="link-small">Terms & Conditions</a></span>
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn--primary btn--full">Create Account</button>
+                    </form>
+
+                    <p class="form-footer">
+                        Already have an account? <a href="#" class="link" id="show-login">Sign in here</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content (Hidden until authenticated) -->
+    <main class="main" id="main-content" style="display: none;">
+        <!-- Hero Section -->
+        <section class="section hero active" id="home">
+            <div class="hero__container container">
+                <div class="hero__content">
+                    <h1 class="hero__title">
+                        Navigate Your Future with
+                        <span class="gradient-text">Data, Not Guesswork</span>
+                    </h1>
+                    <p class="hero__description">
+                        The modern educational landscape is overwhelming. With thousands of career paths,
+                        ever-changing job markets, and limited guidance, students are left confused.
+                        Career Compass replaces sporadic counselling with continuous, AI-powered insights
+                        tailored to your unique profile.
+                    </p>
+                    <button class="btn btn--primary btn--large" id="cta-assessment">
+                        Start Your Free Assessment
+                        <svg class="btn__icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="hero__visual">
+                    <div class="compass-animation">
+                        <div class="compass-circle compass-circle--outer"></div>
+                        <div class="compass-circle compass-circle--middle"></div>
+                        <div class="compass-circle compass-circle--inner"></div>
+                        <div class="compass-needle"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="section features" id="features">
+            <div class="container">
+                <h2 class="section__title">Why Career Compass?</h2>
+                <p class="section__subtitle">Data-driven guidance that evolves with you</p>
+
+                <div class="features__grid">
+                    <article class="feature-card">
+                        <div class="feature-card__icon">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                                    stroke="currentColor" stroke-width="2" />
+                                <path d="M12 6V12L16 14" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" />
+                            </svg>
+                        </div>
+                        <h3 class="feature-card__title">24/7 Accessibility</h3>
+                        <p class="feature-card__description">
+                            Get career guidance anytime, anywhere. No more waiting for scheduled appointments
+                            or limited counselor availability.
+                        </p>
+                    </article>
+
+                    <article class="feature-card">
+                        <div class="feature-card__icon">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <h3 class="feature-card__title">AI Personalization</h3>
+                        <p class="feature-card__description">
+                            Recommendations tailored to your unique combination of aptitude, interests,
+                            and personality traits using advanced algorithms.
+                        </p>
+                    </article>
+
+                    <article class="feature-card">
+                        <div class="feature-card__icon">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M3 3V21H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path d="M18 9L13 14L9 10L3 16" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <h3 class="feature-card__title">Real-time Data</h3>
+                        <p class="feature-card__description">
+                            Access up-to-date salary trends, skill demands, and job market insights
+                            to make informed decisions about your future.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Assessment Section -->
+        <section class="section assessments" id="assessments">
+            <div class="container">
+                <h2 class="section__title">Discover Your Path</h2>
+                <p class="section__subtitle">Complete our comprehensive assessment suite</p>
+
+                <!-- Progress Bar -->
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress-bar__fill" id="progress-fill"></div>
+                    </div>
+                    <p class="progress-text" id="progress-text">0% Complete</p>
+                </div>
+
+                <!-- Assessment Tabs -->
+                <div class="assessment-tabs">
+                    <button class="tab-btn active" data-tab="aptitude">
+                        <span class="tab-number">1</span>
+                        Aptitude Test
+                    </button>
+                    <button class="tab-btn" data-tab="interest">
+                        <span class="tab-number">2</span>
+                        Interest Inventory
+                    </button>
+                    <button class="tab-btn" data-tab="personality">
+                        <span class="tab-number">3</span>
+                        Personality Profiler
+                    </button>
+                </div>
+
+                <!-- Assessment Content -->
+                <div class="assessment-content">
+                    <!-- Aptitude Test -->
+                    <div class="assessment-panel active" id="aptitude-panel">
+                        <div class="assessment-header">
+                            <h3>Aptitude Assessment</h3>
+                            <div class="timer" id="aptitude-timer">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" />
+                                    <path d="M12 6V12L16 14" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" />
+                                </svg>
+                                <span>5:00</span>
+                            </div>
+                        </div>
+
+                        <div id="aptitude-questions-container">
+                            <!-- Questions will be dynamically loaded here -->
+                        </div>
+                        <div class="question-navigation">
+                            <button class="btn btn--secondary" id="prev-question" disabled>Previous</button>
+                            <span class="question-counter" id="question-counter">Question 1 of 20</span>
+                            <button class="btn btn--secondary" id="next-question">Next</button>
+                        </div>
+
+                        <button class="btn btn--primary" id="submit-aptitude">Submit Aptitude Test</button>
+                    </div>
+
+                    <!-- Interest Inventory -->
+                    <div class="assessment-panel" id="interest-panel">
+                        <div class="assessment-header">
+                            <h3>Interest Inventory (RIASEC Model)</h3>
+                            <p class="assessment-description">Select activities that interest you</p>
+                        </div>
+
+                        <div class="interest-grid">
+                            <div class="interest-category">
+                                <h4 class="category-title">
+                                    <span class="category-icon" style="background: var(--color-realistic)">R</span>
+                                    Realistic
+                                </h4>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="interest" value="r1">
+                                    <span>Working with tools and machines</span>
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="interest" value="r2">
+                                    <span>Building or repairing things</span>
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="interest" value="r3">
+                                    <span>Outdoor activities</span>
+                                </label>
+                            </div>
+
+                            <div class="interest-category">
+                                <h4 class="category-title">
+                                    <span class="category-icon" style="background: var(--color-investigative)">I</span>
+                                    Investigative
+                                </h4>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="interest" value="i1">
+                                    <span>Solving complex problems</span>
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="interest" value="i2">
+                                    <span>Conducting research</span>
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="interest" value="i3">
+                                    <span>Analyzing data</span>
+                                </label>
+                            </div>
+
+                            <div class="interest-category">
+                                <h4 class="category-title">
+                                    <span class="category-icon" style="background: var(--color-artistic)">A</span>
+                                    Artistic
+                                </h4>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="interest" value="a1">
+                                    <span>Creative writing or design</span>
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="interest" value="a2">
+                                    <span>Performing arts</span>
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="interest" value="a3">
+                                    <span>Visual arts</span>
+                                </label>
+                            </div>
+
+                            <div class="interest-category">
+                                <h4 class="category-title">
+                                    <span class="category-icon" style="background: var(--color-social)">S</span>
+                                    Social
+                                </h4>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="interest" value="s1">
+                                    <span>Helping others</span>
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="interest" value="s2">
+                                    <span>Teaching or mentoring</span>
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="interest" value="s3">
+                                    <span>Healthcare services</span>
+                                </label>
+                            </div>
+
+                            <div class="interest-category">
+                                <h4 class="category-title">
+                                    <span class="category-icon" style="background: var(--color-enterprising)">E</span>
+                                    Enterprising
+                                </h4>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="interest" value="e1">
+                                    <span>Leading teams</span>
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="interest" value="e2">
+                                    <span>Sales and persuasion</span>
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="interest" value="e3">
+                                    <span>Starting businesses</span>
+                                </label>
+                            </div>
+
+                            <div class="interest-category">
+                                <h4 class="category-title">
+                                    <span class="category-icon" style="background: var(--color-conventional)">C</span>
+                                    Conventional
+                                </h4>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="interest" value="c1">
+                                    <span>Organizing information</span>
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="interest" value="c2">
+                                    <span>Following procedures</span>
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="interest" value="c3">
+                                    <span>Data entry and record keeping</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <button class="btn btn--primary" id="submit-interest">Submit Interest Inventory</button>
+                    </div>
+
+                    <!-- Personality Profiler -->
+                    <div class="assessment-panel" id="personality-panel">
+                        <div class="assessment-header">
+                            <h3>Personality Profiler (Big Five Traits)</h3>
+                            <p class="assessment-description">Rate yourself on the following dimensions</p>
+                        </div>
+
+                        <div class="personality-sliders">
+                            <div class="slider-item">
+                                <div class="slider-header">
+                                    <label>Openness to Experience</label>
+                                    <span class="slider-value" id="openness-value">50</span>
+                                </div>
+                                <div class="slider-labels">
+                                    <span>Practical</span>
+                                    <span>Imaginative</span>
+                                </div>
+                                <input type="range" class="slider" id="openness" min="0" max="100" value="50">
+                            </div>
+
+                            <div class="slider-item">
+                                <div class="slider-header">
+                                    <label>Conscientiousness</label>
+                                    <span class="slider-value" id="conscientiousness-value">50</span>
+                                </div>
+                                <div class="slider-labels">
+                                    <span>Flexible</span>
+                                    <span>Organized</span>
+                                </div>
+                                <input type="range" class="slider" id="conscientiousness" min="0" max="100" value="50">
+                            </div>
+
+                            <div class="slider-item">
+                                <div class="slider-header">
+                                    <label>Extraversion</label>
+                                    <span class="slider-value" id="extraversion-value">50</span>
+                                </div>
+                                <div class="slider-labels">
+                                    <span>Reserved</span>
+                                    <span>Outgoing</span>
+                                </div>
+                                <input type="range" class="slider" id="extraversion" min="0" max="100" value="50">
+                            </div>
+
+                            <div class="slider-item">
+                                <div class="slider-header">
+                                    <label>Agreeableness</label>
+                                    <span class="slider-value" id="agreeableness-value">50</span>
+                                </div>
+                                <div class="slider-labels">
+                                    <span>Competitive</span>
+                                    <span>Cooperative</span>
+                                </div>
+                                <input type="range" class="slider" id="agreeableness" min="0" max="100" value="50">
+                            </div>
+
+                            <div class="slider-item">
+                                <div class="slider-header">
+                                    <label>Neuroticism</label>
+                                    <span class="slider-value" id="neuroticism-value">50</span>
+                                </div>
+                                <div class="slider-labels">
+                                    <span>Calm</span>
+                                    <span>Sensitive</span>
+                                </div>
+                                <input type="range" class="slider" id="neuroticism" min="0" max="100" value="50">
+                            </div>
+                        </div>
+
+                        <button class="btn btn--primary" id="submit-personality">Submit Personality Profile</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Career Explorer Section -->
+        <section class="section explorer" id="explorer">
+            <div class="container">
+                <h2 class="section__title">Career Explorer</h2>
+                <p class="section__subtitle">Browse our comprehensive career catalog</p>
+
+                <!-- Search and Filters -->
+                <div class="explorer-controls">
+                    <div class="search-box">
+                        <svg class="search-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2" />
+                            <path d="M21 21L16.65 16.65" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" />
+                        </svg>
+                        <input type="text" id="career-search" class="search-input" placeholder="Search careers...">
+                    </div>
+
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" data-filter="all">All Careers</button>
+                        <button class="filter-btn" data-filter="technology">Technology</button>
+                        <button class="filter-btn" data-filter="healthcare">Healthcare</button>
+                        <button class="filter-btn" data-filter="business">Business</button>
+                        <button class="filter-btn" data-filter="creative">Creative</button>
+                        <button class="filter-btn" data-filter="education">Education</button>
+                    </div>
+                </div>
+
+                <!-- Career Catalog Grid -->
+                <div class="career-catalog" id="career-catalog">
+                    <!-- Career cards will be dynamically generated -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Counselor Chat Section -->
+        <section class="section chat" id="chat">
+            <div class="container">
+                <h2 class="section__title">Career Counselor Chat</h2>
+                <p class="section__subtitle">Connect with expert counselors for personalized guidance</p>
+
+                <!-- Counselor Selection -->
+                <div class="counselor-selection" id="counselor-selection">
+                    <h3 class="selection-title">Choose Your Counselor</h3>
+                    <div class="counselor-grid">
+                        <!-- Counselor cards -->
+                        <div class="counselor-card" data-counselor="sarah">
+                            <div class="counselor-avatar">
+                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%234A90E2'/%3E%3Ctext x='50' y='50' text-anchor='middle' dy='.3em' fill='white' font-size='40' font-family='Arial'%3ES%3C/text%3E%3C/svg%3E"
+                                    alt="Sarah">
+                            </div>
+                            <h4 class="counselor-name">Dr. Sarah Johnson</h4>
+                            <p class="counselor-specialty">Technology & Engineering</p>
+                            <p class="counselor-experience">15+ years experience</p>
+                            <div class="counselor-rating">
+                                ⭐⭐⭐⭐⭐ <span>4.9/5</span>
+                            </div>
+                            <button class="btn btn--primary btn--small">Start Chat</button>
+                        </div>
+
+                        <div class="counselor-card" data-counselor="michael">
+                            <div class="counselor-avatar">
+                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%2326A69A'/%3E%3Ctext x='50' y='50' text-anchor='middle' dy='.3em' fill='white' font-size='40' font-family='Arial'%3EM%3C/text%3E%3C/svg%3E"
+                                    alt="Michael">
+                            </div>
+                            <h4 class="counselor-name">Michael Chen</h4>
+                            <p class="counselor-specialty">Business & Finance</p>
+                            <p class="counselor-experience">12+ years experience</p>
+                            <div class="counselor-rating">
+                                ⭐⭐⭐⭐⭐ <span>4.8/5</span>
+                            </div>
+                            <button class="btn btn--primary btn--small">Start Chat</button>
+                        </div>
+
+                        <div class="counselor-card" data-counselor="emily">
+                            <div class="counselor-avatar">
+                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23EC407A'/%3E%3Ctext x='50' y='50' text-anchor='middle' dy='.3em' fill='white' font-size='40' font-family='Arial'%3EE%3C/text%3E%3C/svg%3E"
+                                    alt="Emily">
+                            </div>
+                            <h4 class="counselor-name">Emily Rodriguez</h4>
+                            <p class="counselor-specialty">Healthcare & Medicine</p>
+                            <p class="counselor-experience">10+ years experience</p>
+                            <div class="counselor-rating">
+                                ⭐⭐⭐⭐⭐ <span>4.9/5</span>
+                            </div>
+                            <button class="btn btn--primary btn--small">Start Chat</button>
+                        </div>
+
+                        <div class="counselor-card" data-counselor="david">
+                            <div class="counselor-avatar">
+                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23FF9800'/%3E%3Ctext x='50' y='50' text-anchor='middle' dy='.3em' fill='white' font-size='40' font-family='Arial'%3ED%3C/text%3E%3C/svg%3E"
+                                    alt="David">
+                            </div>
+                            <h4 class="counselor-name">David Williams</h4>
+                            <p class="counselor-specialty">Creative Arts & Design</p>
+                            <p class="counselor-experience">8+ years experience</p>
+                            <div class="counselor-rating">
+                                ⭐⭐⭐⭐⭐ <span>4.7/5</span>
+                            </div>
+                            <button class="btn btn--primary btn--small">Start Chat</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chat Interface (Hidden initially) -->
+                <div class="chat-interface" id="chat-interface" style="display: none;">
+                    <div class="chat-header">
+                        <div class="chat-counselor-info">
+                            <div class="chat-counselor-avatar" id="chat-counselor-avatar"></div>
+                            <div>
+                                <h4 id="chat-counselor-name">Counselor Name</h4>
+                                <p id="chat-counselor-specialty">Specialty</p>
+                            </div>
+                        </div>
+                        <button class="btn btn--small" id="change-counselor">Change Counselor</button>
+                    </div>
+
+                    <div class="chat-container">
+                        <div class="chat-messages" id="chat-messages">
+                            <!-- Messages will be added here -->
+                        </div>
+                        <div class="chat-input-container">
+                            <input type="text" class="chat-input" id="chat-input"
+                                placeholder="Ask me anything about careers...">
+                            <button class="btn btn--icon" id="send-message">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M22 2L11 13M22 2L15 22L11 13M22 2L2 8L11 13" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+    </main>
+
+    <!-- Career Roadmap Modal -->
+    <div class="modal" id="roadmap-modal">
+        <div class="modal__overlay"></div>
+        <div class="modal__content">
+            <button class="modal__close" id="close-modal">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                </svg>
+            </button>
+            <div class="roadmap" id="roadmap-content">
+                <!-- Roadmap content will be dynamically generated -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Animation -->
+    <div class="loading-overlay" id="loading-overlay">
+        <div class="loading-spinner">
+            <div class="spinner"></div>
+            <p class="loading-text">Calculating your results...</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__content">
+                <div class="footer__brand">
+                    <div class="footer__logo">
+                        <svg class="logo-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" />
+                            <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" />
+                            <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" />
+                        </svg>
+                        <span>Career Compass</span>
+                    </div>
+                    <p class="footer__tagline">Navigate your future with confidence</p>
+                </div>
+                <div class="footer__links">
+                    <a href="#" class="footer__link">Admin Login</a>
+                    <a href="#" class="footer__link">Privacy Policy</a>
+                    <a href="#" class="footer__link">Terms of Service</a>
+                    <a href="#" class="footer__link">Contact Us</a>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>&copy; 2026 Career Compass. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
